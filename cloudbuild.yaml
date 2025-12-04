@@ -1,0 +1,64 @@
+steps:
+  # Build the container image using Dockerfile
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '--tag=gcr.io/$PROJECT_ID/giyapay-headless-cms:$COMMIT_SHA'
+      - '--tag=gcr.io/$PROJECT_ID/giyapay-headless-cms:latest'
+      - '--build-arg'
+      - 'CONTENTFUL_SPACE_ID=${_CONTENTFUL_SPACE_ID}'
+      - '--build-arg'
+      - 'CONTENTFUL_ACCESS_TOKEN=${_CONTENTFUL_ACCESS_TOKEN}'
+      - '--build-arg'
+      - 'CONTENTFUL_PREVIEW_ACCESS_TOKEN=${_CONTENTFUL_PREVIEW_ACCESS_TOKEN}'
+      - '--build-arg'
+      - 'CONTENTFUL_SPACE_ENVIRONMENT=${_CONTENTFUL_SPACE_ENVIRONMENT}'
+      - '--build-arg'
+      - 'NEXT_PUBLIC_BASE_URL=${_NEXT_PUBLIC_BASE_URL}'
+      - '.'
+    timeout: 1200s
+
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/giyapay-headless-cms:$COMMIT_SHA'
+
+  # Push the latest tag
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/giyapay-headless-cms:latest'
+
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'giyapay-headless-cms'
+      - '--image=gcr.io/$PROJECT_ID/giyapay-headless-cms:$COMMIT_SHA'
+      - '--region=europe-west1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--set-env-vars=CONTENTFUL_SPACE_ID=${_CONTENTFUL_SPACE_ID},CONTENTFUL_ACCESS_TOKEN=${_CONTENTFUL_ACCESS_TOKEN},CONTENTFUL_PREVIEW_ACCESS_TOKEN=${_CONTENTFUL_PREVIEW_ACCESS_TOKEN},CONTENTFUL_SPACE_ENVIRONMENT=${_CONTENTFUL_SPACE_ENVIRONMENT},NEXT_PUBLIC_BASE_URL=${_NEXT_PUBLIC_BASE_URL}'
+
+images:
+  - 'gcr.io/$PROJECT_ID/giyapay-headless-cms:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/giyapay-headless-cms:latest'
+
+options:
+  machineType: 'E2_HIGHCPU_8'
+  logging: CLOUD_LOGGING_ONLY
+
+timeout: 1800s
+
+# Substitutions for environment variables
+# Set these in Cloud Build Triggers or pass them when triggering manually
+substitutions:
+  _CONTENTFUL_SPACE_ID: 'your-space-id'
+  _CONTENTFUL_ACCESS_TOKEN: 'your-access-token'
+  _CONTENTFUL_PREVIEW_ACCESS_TOKEN: 'your-preview-token'
+  _CONTENTFUL_SPACE_ENVIRONMENT: 'master'
+  _NEXT_PUBLIC_BASE_URL: 'https://your-cloud-run-url'
+
