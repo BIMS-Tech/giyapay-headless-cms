@@ -23,6 +23,11 @@ module.exports = withPlugins(plugins, {
   },
 
   /**
+   * Enable standalone output for Docker/Cloud deployments
+   */
+  output: 'standalone',
+
+  /**
    * The experimental option allows you to enable future/experimental options
    * like React 18 concurrent features.
    */
