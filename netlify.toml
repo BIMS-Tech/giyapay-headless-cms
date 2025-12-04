@@ -1,2 +1,6 @@
 [build]
   command = "NEXT_PUBLIC_BASE_URL=\"${NEXT_PUBLIC_BASE_URL:-$URL}\" yarn build"
+  publish = ".next"
+
+# Netlify automatically detects and uses Next.js Runtime
+# No additional configuration needed for Next.js 14
