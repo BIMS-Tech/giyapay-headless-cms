@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 
 import { ArticleContent, ArticleHero, ArticleTileGrid } from '@src/components/features/article';
 import { Container } from '@src/components/shared/container';
+import { Footer } from '@src/components/templates/footer';
 import initTranslations from '@src/i18n';
 import { defaultLocale, locales } from '@src/i18n/config';
 import { client, previewClient } from '@src/lib/client';
@@ -99,6 +100,9 @@ export default async function Page({ params: { locale, slug } }: BlogPageProps) 
           <ArticleTileGrid className="md:grid-cols-2" articles={relatedPosts} />
         </Container>
       )}
+
+      {/* Footer */}
+      <Footer />
     </>
   );
 }

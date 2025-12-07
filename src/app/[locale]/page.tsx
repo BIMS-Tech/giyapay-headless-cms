@@ -7,6 +7,7 @@ import { Container } from '@src/components/shared/container';
 import TranslationsProvider from '@src/components/shared/i18n/TranslationProvider';
 import initTranslations from '@src/i18n';
 import { defaultLocale, locales } from '@src/i18n/config';
+import { Footer } from '@src/components/templates/footer';
 
 interface LandingPageProps {
   params: {
@@ -183,11 +184,12 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
         </section>
 
         {/* What We Can Do Section */}
-        <section className="section-padding from-orange-400 to-pink-500 text-white bg-gradient-to-r">
+        <section className="what-we-can-do-section">
+          <div className="what-we-can-do-overlay"></div>
           <Container>
-            <div className="max-w-4xl">
-              <h2 className="h2 fade-right mb-6">What We Can Do For You</h2>
-              <p className="fade-right text-xl leading-relaxed">
+            <div className="what-we-can-do-content">
+              <h2 className="what-we-can-do-title fade-right">What We Can Do For You</h2>
+              <p className="what-we-can-do-description fade-right">
                 We enable you to accept online payments without the complexity of set-up
                 requirements while providing a good customer service.
               </p>
@@ -523,148 +525,23 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
         </section>
 
         {/* CTA Section */}
-        <section className="section-padding bg-white">
+        <section className="cta-section">
           <Container>
-            <div className="relative text-center">
-              <div className="mb-8 flex items-center justify-center gap-8">
-                <Image
-                  src="/images/📱-iPad.png"
-                  alt="iPad"
-                  width={300}
-                  height={200}
-                  className="fade-right"
-                />
-                <Image
-                  src="/images/💻--Macbook.png"
-                  alt="MacBook"
-                  width={400}
-                  height={250}
-                  className="fade-left"
-                />
-              </div>
-              <div className="fade-in">
-                <h4 className="text-gray-500 mb-4 text-sm font-semibold uppercase tracking-wider">
-                  ENOUGH TALK, LET&apos;S WORK TOGETHER
-                </h4>
-                <h2 className="h2 mb-8">Let&apos;s talk and see how we can help.</h2>
-                <Link href="#demo" className="btn-primary">
-                  Get Started with GiyaPay
-                </Link>
-              </div>
-            </div>
-          </Container>
-        </section>
-
-        {/* Newsletter Section */}
-        <section className="section-padding bg-gray-900 text-white">
-          <Container>
-            <div className="mx-auto max-w-2xl text-center">
-              <div className="mb-6 flex items-center justify-center">
-                <div className="bg-gray-600 h-px flex-1" />
-                <span className="text-gray-400 px-4 text-sm font-semibold uppercase tracking-wider">
-                  STAY TUNED
-                </span>
-                <div className="bg-gray-600 h-px flex-1" />
-              </div>
-              <h3 className="h3 mb-8">
-                Subscribe to our newsletter and never miss our latest news, offers and discounts.
-              </h3>
-              <form className="mx-auto flex max-w-lg flex-col gap-4 sm:flex-row">
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  className="bg-gray-800 text-white border-gray-700 focus:border-pink-500 flex-1 rounded border px-4 py-3 focus:outline-none"
-                />
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  className="bg-gray-800 text-white border-gray-700 focus:border-pink-500 flex-1 rounded border px-4 py-3 focus:outline-none"
-                />
-                <input
-                  type="email"
-                  placeholder="email@email.com"
-                  className="bg-gray-800 text-white border-gray-700 focus:border-pink-500 flex-1 rounded border px-4 py-3 focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  className="bg-white text-gray-900 hover:bg-gray-100 rounded px-6 py-3 font-semibold transition-colors duration-200"
-                >
-                  Subscribe
-                </button>
-              </form>
+            <div className="cta-card">
+              <h2 className="cta-title">Let&apos;s talk and see how we can help.</h2>
+              <Link
+                href="https://calendly.com/salesbimstech/60min-1?back=1&month=2021-10"
+                target="_blank"
+                className="cta-button"
+              >
+                Get Started with GiyaPay
+              </Link>
             </div>
           </Container>
         </section>
 
         {/* Footer */}
-        <footer className="footer">
-          <Container>
-            <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-4">
-              <div>
-                <Image
-                  src="/images/giyapay-white.png"
-                  alt="GiyaPay"
-                  width={150}
-                  height={40}
-                  className="mb-4"
-                />
-                <p className="text-gray-400 text-sm">
-                  17th Floor, KMC, Skyrise 4B, Geonzon Street,
-                  <br />
-                  Cebu IT Park, Cebu City, 6000
-                </p>
-              </div>
-              <div>
-                <h4 className="footer-title">Menu</h4>
-                <div className="space-y-2">
-                  <Link href="/" className="footer-link">
-                    Home
-                  </Link>
-                  <Link href="#contact" className="footer-link">
-                    Contact
-                  </Link>
-                  <Link href={`/${locale}/blog`} className="footer-link">
-                    Blog
-                  </Link>
-                  <Link href="#faq" className="footer-link">
-                    FAQ
-                  </Link>
-                  <Link href="/privacy-policy" className="footer-link">
-                    Privacy Policy
-                  </Link>
-                </div>
-              </div>
-              <div>
-                <h4 className="footer-title">Follow Us</h4>
-                <div className="flex gap-4">
-                  <Link href="https://www.facebook.com/GiyaPay" target="_blank">
-                    <Image src="/images/fb.png" alt="Facebook" width={25} height={25} />
-                  </Link>
-                  <Link href="https://www.instagram.com/giyapay/" target="_blank">
-                    <Image src="/images/ig.png" alt="Instagram" width={25} height={25} />
-                  </Link>
-                  <Link
-                    href="https://www.youtube.com/channel/UCV8M_KPE5i75L_ne1KuARSA"
-                    target="_blank"
-                  >
-                    <Image src="/images/youtube-2.png" alt="YouTube" width={25} height={25} />
-                  </Link>
-                </div>
-              </div>
-              <div>
-                <h4 className="footer-title">Contact Us</h4>
-                <Link href="mailto:info@bims.tech" className="footer-link">
-                  info@bims.tech
-                </Link>
-              </div>
-            </div>
-            <div className="border-gray-800 border-t pt-8">
-              <p className="text-gray-400 text-center text-sm">
-                Copyright © 2021 GiyaPay is a product of BIMS Technologies, Inc.
-              </p>
-            </div>
-          </Container>
-        </footer>
+        <Footer />
       </div>
     </TranslationsProvider>
   );

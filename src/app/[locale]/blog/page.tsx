@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { ArticleTileGrid } from '@src/components/features/article';
 import { Container } from '@src/components/shared/container';
 import TranslationsProvider from '@src/components/shared/i18n/TranslationProvider';
+import { Footer } from '@src/components/templates/footer';
 import initTranslations from '@src/i18n';
 import { defaultLocale, locales } from '@src/i18n/config';
 import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
@@ -89,6 +90,9 @@ export default async function BlogPage({ params: { locale } }: BlogPageProps) {
               )}
             </Container>
           </section>
+
+          {/* Footer */}
+          <Footer />
         </div>
       </TranslationsProvider>
     );
@@ -134,6 +138,9 @@ export default async function BlogPage({ params: { locale } }: BlogPageProps) {
               </div>
             </Container>
           </section>
+
+          {/* Footer */}
+          <Footer />
         </div>
       </TranslationsProvider>
     );

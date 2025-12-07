@@ -41,10 +41,11 @@ export default function GiyaPayHeader({ locale }: GiyaPayHeaderProps) {
             <Image
               src="/images/giyapay-logo.png"
               alt="GiyaPay Logo"
-              width={160}
-              height={45}
+              width={200}
+              height={56}
               priority
               className="h-auto w-auto"
+              style={{ height: '50px', width: 'auto' }}
             />
           </Link>
 

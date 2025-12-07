@@ -61,7 +61,7 @@ export default async function PageLayout({ children, params }: LayoutProps) {
   return (
     <html lang={locale} dir={dir(locale)}>
       <head>
-        <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+        <link rel="mask-icon" href="/favicons/favicon.png" color="#5bbad5" />
       </head>
 
       <body className={`${inter.variable} ${montserrat.variable}`}>
