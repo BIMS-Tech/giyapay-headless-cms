@@ -61,6 +61,7 @@ export default async function PageLayout({ children, params }: LayoutProps) {
   return (
     <html lang={locale} dir={dir(locale)}>
       <head>
+        <link rel="icon" href="/favicons/favicon.png" type="image/png" />
         <link rel="mask-icon" href="/favicons/favicon.png" color="#5bbad5" />
       </head>
 
