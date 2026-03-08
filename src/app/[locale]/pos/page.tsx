@@ -249,7 +249,7 @@ export default async function PosPage({ params: { locale } }: PosPageProps) {
                   alt="Proven success in integration"
                   width={439}
                   height={293}
-                  className="mx-[-2rem] mt-4 h-auto w-[calc(100%+4rem)]"
+                  className="mt-4 h-auto w-full"
                 />
               </div>
 
@@ -267,7 +267,7 @@ export default async function PosPage({ params: { locale } }: PosPageProps) {
                   alt="Unmatched technical capabilities"
                   width={439}
                   height={293}
-                  className="pos-why-card-img h-auto w-full rounded-xl"
+                  className="mt-4 h-auto w-full"
                 />
               </div>
             </div>
