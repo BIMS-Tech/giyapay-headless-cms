@@ -1225,6 +1225,43 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  /* POS Why Choose Cards */
+  .pos-why-card {
+    border-radius: 1rem;
+    padding: 2.5rem 2rem 0;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(white, white) padding-box,
+      linear-gradient(135deg, #fa9f42, #f03b6e) border-box;
+    border: 2px solid transparent;
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+    cursor: default;
+  }
+
+  .pos-why-card:hover {
+    background: linear-gradient(135deg, #fa9f42, #f03b6e) padding-box,
+      linear-gradient(135deg, #fa9f42, #f03b6e) border-box;
+    box-shadow: 0 12px 40px rgba(240, 59, 110, 0.3);
+  }
+
+  .pos-why-card h3 {
+    color: #111827;
+    transition: color 0.35s ease;
+  }
+
+  .pos-why-card:hover h3 {
+    color: #ffffff;
+  }
+
+  .pos-why-card p {
+    color: #4b5563;
+    transition: color 0.35s ease;
+  }
+
+  .pos-why-card:hover p {
+    color: rgba(255, 255, 255, 0.9);
+  }
 }
 
 @layer utilities {
