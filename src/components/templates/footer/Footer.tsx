@@ -37,6 +37,9 @@ export const Footer = () => {
               <Link href={`/${locale}`} className="footer-link-item">
                 Home
               </Link>
+              <Link href={`/${locale}/pos`} className="footer-link-item">
+                POS
+              </Link>
               <Link href={`/${locale}#contact`} className="footer-link-item">
                 Contact
               </Link>
