@@ -2,6 +2,7 @@ import { dir } from 'i18next';
 import type { Metadata, Viewport } from 'next';
 import { Inter, Montserrat } from 'next/font/google';
 import { draftMode } from 'next/headers';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { ContentfulPreviewProvider } from '@src/components/features/contentful';
 import TranslationsProvider from '@src/components/shared/i18n/TranslationProvider';
@@ -78,6 +79,7 @@ export default async function PageLayout({ children, params }: LayoutProps) {
               {children}
               <AnimationSystem />
             </main>
+            <SpeedInsights />
             <div id="portal" />
           </ContentfulPreviewProvider>
         </TranslationsProvider>
