@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
+
+export const revalidate = 30;
 import { notFound } from 'next/navigation';
 
 import { ArticleTileGrid } from '@src/components/features/article';
