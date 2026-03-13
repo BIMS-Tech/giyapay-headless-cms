@@ -45,16 +45,17 @@ export default async function PosPage({ params: { locale } }: PosPageProps) {
         <section
           className="relative overflow-hidden pb-0 pt-28"
           style={{
-            background: 'linear-gradient(160deg, #FFF4E0 0%, #FFE0EC 55%, #ffffff 100%)',
+            background: 'linear-gradient(180deg, #FFF4E0 0%, #FFE0EC 60%, #ffffff 100%)',
           }}
         >
           {/* Text block – constrained width */}
           <div className="mx-auto max-w-3xl px-4 text-center">
             <h1 className="mb-5 text-5xl font-bold leading-tight tracking-tight text-[#111827] sm:text-5xl lg:text-5xl">
-              Get a POS That Does It All
+              More Payment Methods for Your POS
             </h1>
             <p className="mx-auto mb-9 max-w-lg text-base text-[#6b7280] sm:text-lg">
-              Upgrade your POS with GiyaPay. Sell smarter, track sharper, get paid quicker
+              GiyaPay is a payment aggregator that lets you accept multiple payment gateways in your
+              POS. Your hardware + our tech = happy customers.
             </p>
             <Link
               href="https://calendly.com/salesbimstech/60min-1"
