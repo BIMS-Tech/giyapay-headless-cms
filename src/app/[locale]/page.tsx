@@ -359,9 +359,15 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
 
         {/* Social Proof */}
         <section className="social-proof">
-          <Container>
-            <h2 className="h2 mb-12 text-center">Businesses that Trust Us</h2>
-            <div className="logo-group">
+          <div className="mb-10 text-center">
+            <h2 className="h2">Businesses that Trust Us</h2>
+          </div>
+
+          {/* Infinite scrolling marquee – right to left */}
+          <div className="logo-marquee-wrapper">
+            {/* Track is duplicated so the loop is seamless */}
+            <div className="logo-marquee-track">
+              {/* — set 1 — */}
               <Image
                 src="/images/IAU.png"
                 alt="IAU"
@@ -397,8 +403,63 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
                 height={60}
                 className="client-logo"
               />
-            </div>
-            <div className="logo-group">
+              <Image
+                src="/images/blocxy.png"
+                alt="Blocxy"
+                width={120}
+                height={60}
+                className="client-logo"
+              />
+              <Image
+                src="/images/mmda.png"
+                alt="MMDA"
+                width={120}
+                height={60}
+                className="client-logo"
+              />
+              <Image
+                src="/images/icore-tech.png"
+                alt="iCore Technologies"
+                width={120}
+                height={60}
+                className="client-logo"
+              />
+              {/* — set 2 (duplicate for seamless loop) — */}
+              <Image
+                src="/images/IAU.png"
+                alt="IAU"
+                width={120}
+                height={60}
+                className="client-logo"
+              />
+              <Image
+                src="/images/Papa-Diddi_s---Brand-Logo---on-White-1.png"
+                alt="Papa Diddi's"
+                width={200}
+                height={60}
+                className="client-logo"
+              />
+              <Image
+                src="/images/CCTN.png"
+                alt="CCTN"
+                width={120}
+                height={60}
+                className="client-logo"
+              />
+              <Image
+                src="/images/airworks-logo-png.png"
+                alt="Airworks"
+                width={120}
+                height={60}
+                className="client-logo"
+              />
+              <Image
+                src="/images/mr-quickie.png"
+                alt="Mr. Quickie Corp"
+                width={120}
+                height={60}
+                className="client-logo"
+              />
               <Image
                 src="/images/blocxy.png"
                 alt="Blocxy"
@@ -421,7 +482,7 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
                 className="client-logo"
               />
             </div>
-          </Container>
+          </div>
         </section>
 
         {/* Featured Article */}
