@@ -2,6 +2,7 @@ import { dir } from 'i18next';
 import type { Metadata, Viewport } from 'next';
 import { Inter, Montserrat } from 'next/font/google';
 import { draftMode } from 'next/headers';
+import Script from 'next/script';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { ContentfulPreviewProvider } from '@src/components/features/contentful';
@@ -64,6 +65,18 @@ export default async function PageLayout({ children, params }: LayoutProps) {
       <head>
         <link rel="icon" href="/favicons/favicon.png" type="image/png" />
         <link rel="mask-icon" href="/favicons/favicon.png" color="#5bbad5" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-4SXKN758Q0"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4SXKN758Q0');
+          `}
+        </Script>
       </head>
 
       <body className={`${inter.variable} ${montserrat.variable}`}>
