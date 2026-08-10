@@ -46,7 +46,7 @@ export const Footer = () => {
               <Link href={`/${locale}/blog`} className="footer-link-item">
                 Blog
               </Link>
-              <Link href={`/${locale}#faq`} className="footer-link-item">
+              <Link href={`/${locale}/faq`} className="footer-link-item">
                 FAQ
               </Link>
               <Link href={`/${locale}/privacy-policy`} className="footer-link-item">

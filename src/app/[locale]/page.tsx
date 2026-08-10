@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { HomeFaqAccordion } from '@src/components/features/faq';
 import FixedBanner from '@src/components/FixedBanner';
 import { Container } from '@src/components/shared/container';
 import TranslationsProvider from '@src/components/shared/i18n/TranslationProvider';
@@ -45,7 +46,7 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
         <section className="hero-gradient-section">
           {/* Hero Title */}
           <div className="hero-title-container">
-            <h1 className="hero-title-large">
+            <h1 className="hero-title-large hero-load hero-load-1">
               Your complete
               <br />
               payment solution.
@@ -71,7 +72,7 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
 
           {/* Content Text and Buttons */}
           <div className="hero-content-container">
-            <div className="hero-content-text">
+            <div className="hero-content-text hero-load hero-load-2">
               <p>
                 Accept major debit/credit cards and other popular payment methods to offer a
                 seamless check out experience. Manage your entire business, payments and payouts –
@@ -82,7 +83,7 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
                 consolidated reports for your business.
               </p>
             </div>
-            <div className="hero-content-buttons">
+            <div className="hero-content-buttons hero-load hero-load-3">
               <Link
                 href="https://calendly.com/salesbimstech/60min-1?back=1&month=2021-10"
                 target="_blank"
@@ -528,48 +529,9 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
             <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
               <div>
                 <h2 className="faq-title text-white">Having trouble? We&apos;re here for you.</h2>
-                <div className="space-y-4">
-                  <div className="accordion-item">
-                    <button className="accordion-trigger">
-                      Is GiyaPay similar to e-wallets?
-                      <span>+</span>
-                    </button>
-                    <div className="accordion-content">
-                      GiyaPay is not similar to e-wallets. There is no need for the payor to create
-                      an account, download an application or register to its service unlike
-                      e-wallets. GiyaPay just needs to activate your Merchant Account, integrate our
-                      hosted payment button in your website, and you can easily start to accept
-                      payments from various payment channels!
-                    </div>
-                  </div>
-                  <div className="accordion-item">
-                    <button className="accordion-trigger">
-                      How secure is GiyaPay?
-                      <span>+</span>
-                    </button>
-                    <div className="accordion-content">
-                      Giyapay uses an SSL encrypted website and is PCI-DSS Compliant. Each payment
-                      gateway has their respective security protocols, including possible 2MFA and
-                      OTP, which will be at the discretion and responsibility of the Payment
-                      Gateway.
-                    </div>
-                  </div>
-                  <div className="accordion-item">
-                    <button className="accordion-trigger">
-                      Can I use GiyaPay if I do not have a website?
-                      <span>+</span>
-                    </button>
-                    <div className="accordion-content">
-                      Yes, through our Payment Link feature. As for the GiyaPay button, we would
-                      recommend having a hosted domain or a centralized payment page where we could
-                      attach the GiyaPay button for your payors to pay. We may provide this simple
-                      page for you, or we may coordinate with the team who built your website to
-                      provide this for you.
-                    </div>
-                  </div>
-                </div>
-                <Link href="/faq" className="text-white mt-6 inline-block underline">
-                  — Visit FAQ page for a list of all Frequently Asked Questions
+                <HomeFaqAccordion />
+                <Link href={`/${locale}/faq`} className="faq-search-cta">
+                  Search all Frequently Asked Questions →
                 </Link>
               </div>
               <div className="fade-left">

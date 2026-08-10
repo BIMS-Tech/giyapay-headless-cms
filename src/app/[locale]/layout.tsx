@@ -63,6 +63,15 @@ export default async function PageLayout({ children, params }: LayoutProps) {
   return (
     <html lang={locale} dir={dir(locale)}>
       <head>
+        {/* Enables the hidden starting state for scroll animations before the
+            first paint, so revealing content never flashes. Skipped entirely
+            when the visitor prefers reduced motion. */}
+        <script
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-anim')}}catch(e){}`,
+          }}
+        />
         <link rel="icon" href="/favicons/favicon.png" type="image/png" />
         <link rel="mask-icon" href="/favicons/favicon.png" color="#5bbad5" />
         <Script

@@ -1,49 +1,71 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
+const REVEAL_SELECTOR = '.fade-in, .fade-left, .fade-right';
+
+/** Elements revealed together are staggered slightly, up to this many steps. */
+const MAX_STAGGER_STEPS = 4;
+const STAGGER_MS = 90;
+
+/**
+ * Reveals `.fade-in` / `.fade-left` / `.fade-right` elements as they scroll
+ * into view.
+ *
+ * The hidden starting state lives in CSS behind the `.js-anim` class (set on
+ * <html> before first paint), so if this component never runs — JS disabled,
+ * hydration failure, reduced-motion preference — every element simply stays
+ * visible instead of being stranded at opacity 0.
+ */
 export default function AnimationSystem() {
+  const pathname = usePathname();
+
   useEffect(() => {
-    // Animation observer for fade-in effects
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px',
-    };
+    if (!document.documentElement.classList.contains('js-anim')) return;
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const element = entry.target as HTMLElement;
+    const elements = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR));
+    if (elements.length === 0) return;
 
-          // Add animation classes based on element's animation class
-          if (element.classList.contains('fade-in')) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-          } else if (element.classList.contains('fade-left')) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateX(0)';
-          } else if (element.classList.contains('fade-right')) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateX(0)';
-          }
+    const reveal = (element: HTMLElement) => element.classList.add('is-visible');
 
-          // Stop observing once animated
-          observer.unobserve(element);
-        }
-      });
-    }, observerOptions);
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach(reveal);
+      return;
+    }
 
-    // Observe all animation elements
-    const animationElements = document.querySelectorAll('.fade-in, .fade-left, .fade-right');
-    animationElements.forEach(el => {
-      observer.observe(el);
-    });
+    const observer = new IntersectionObserver(
+      entries => {
+        entries
+          .filter(entry => entry.isIntersecting)
+          .forEach((entry, index) => {
+            const element = entry.target as HTMLElement;
+            element.style.transitionDelay = `${Math.min(index, MAX_STAGGER_STEPS) * STAGGER_MS}ms`;
+            reveal(element);
+            observer.unobserve(element);
+          });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -60px 0px' },
+    );
 
-    // Cleanup
+    elements.forEach(element => observer.observe(element));
+
+    // Belt and braces: if the observer never fires, anything already on screen
+    // would be stranded invisible. Content further down is left alone so it
+    // still animates when the visitor scrolls to it.
+    const failsafe = window.setTimeout(() => {
+      elements
+        .filter(element => element.getBoundingClientRect().top < window.innerHeight)
+        .forEach(reveal);
+    }, 2000);
+
     return () => {
       observer.disconnect();
+      window.clearTimeout(failsafe);
     };
-  }, []);
+    // Re-scan after client-side navigation, since the layout (and this
+    // component) persists across route changes.
+  }, [pathname]);
 
   return null;
 }

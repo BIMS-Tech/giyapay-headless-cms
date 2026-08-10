@@ -131,7 +131,7 @@ export default function GiyaPayHeader({ locale }: GiyaPayHeaderProps) {
             >
               Blog
             </Link>
-            <Link href={`/${locale}#faq`} className="nav-link">
+            <Link href={`/${locale}/faq`} className="nav-link">
               FAQ
             </Link>
             <Link href={`/${locale}#contact`} className="nav-link">
@@ -227,7 +227,7 @@ export default function GiyaPayHeader({ locale }: GiyaPayHeaderProps) {
               Blog
             </Link>
             <Link
-              href={`/${locale}#faq`}
+              href={`/${locale}/faq`}
               className="mobile-nav-link"
               onClick={() => setIsMenuOpen(false)}
             >
